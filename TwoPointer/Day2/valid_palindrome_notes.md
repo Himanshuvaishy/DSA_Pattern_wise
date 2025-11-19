@@ -1,9 +1,90 @@
 
 # Valid Palindrome (Two Pointer Approach)
+## Problem
+Given a string `s`, determine whether it is a palindrome, considering only alphanumeric characters and ignoring letter case.
 
+```js 
+
+## Key points
+- Ignore non-alphanumeric characters (spaces, punctuation).
+- Treat uppercase and lowercase letters as the same.
+- An empty string is considered a valid palindrome.
+
+## Constraints
+- 0 ≤ s.length ≤ 10^5 (typical)
+- Characters may include letters, digits, punctuation, and spaces.
+
+## Approach summary
+Use a two-pointer technique:
+- Initialize `i = 0`, `j = s.length - 1`.
+- Move `i` forward and `j` backward skipping non-alphanumeric chars.
+- Compare lowercase characters at `i` and `j`. If any mismatch → false.
+- If pointers cross without mismatch → true.
+
+## Complexity
+- Time: O(n)
+- Space: O(1)
+
+## Example
 This solution checks if a string is a valid palindrome **without using regex**, using a clean and simple two-pointer technique.
 
 ---
+✅ 1. Brute Force (Using Built-in Reverse Method)
+var isPalindrome = function (s) {
+
+    // Step 1: Clean the string (keep only a-z, 0-9)
+    let cleaned = "";
+
+    for (let i = 0; i < s.length; i++) {
+        let ch = s[i].toLowerCase();
+
+        // check alphanumeric manually
+        if ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+            cleaned += ch;
+        }
+    }
+
+    // Step 2: Store original cleaned string
+    let original = cleaned;
+
+    // Step 3: Reverse using built-in methods
+    let reversed = cleaned.split("").reverse().join("");
+
+    // Step 4: Compare
+    return original === reversed;
+};
+
+✅ 2. Brute Force (Manual Reverse Using a For Loop)
+var isPalindrome = function (s) {
+
+    // Step 1: Clean the string (keep only a-z, 0-9)
+    let cleaned = "";
+
+    for (let i = 0; i < s.length; i++) {
+        let ch = s[i].toLowerCase();
+
+        if ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+            cleaned += ch;
+        }
+    }
+
+    // Step 2: Store original cleaned string
+    let original = cleaned;
+
+    // Step 3: Reverse manually using for-loop
+    let reversed = "";
+    for (let i = cleaned.length - 1; i >= 0; i--) {
+        reversed += cleaned[i];
+    }
+
+    // Step 4: Compare
+    return original === reversed;
+};
+
+📝 Summary
+Version	Method	Time	Space	Notes
+Built-in reverse	split → reverse → join	O(n)	O(n)	Clean & simple
+Manual reverse	For-loop building reversed string	O(n)	O(n)	Good for understanding
 
 ## ✅ JavaScript Code (Simple & Clean)
 
